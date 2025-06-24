@@ -10,7 +10,7 @@ class MockCarDatasource: CarDatasource {
     func fetchCars() async throws -> [CarNetwork] {
         // Simulate a network delay
         try await Task.sleep(nanoseconds: 1_000_000_000) // 1 second
-        
+
         // get local json file
         guard let url = Bundle.main.url(forResource: "mockdata", withExtension: "json") else {
             throw MockCarDatasource.Error.fileNotFound
