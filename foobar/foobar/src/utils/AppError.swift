@@ -27,6 +27,7 @@ extension AppError {
     enum Datasource: Swift.Error, CustomStringConvertible {
         case fileNotFound
         case invalidData
+        case networkError(String)
 
         var description: String {
             switch self {
@@ -34,6 +35,8 @@ extension AppError {
                 return "Mock data file not found"
             case .invalidData:
                 return "Invalid data format"
+            case .networkError(let statusCode):
+                return "Network error: \(statusCode)"
             }
         }
     }
