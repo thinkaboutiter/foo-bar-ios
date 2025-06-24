@@ -5,10 +5,10 @@
 //  Created by boyan.yankov on 2025-06-24.
 //
 
-class AppCarRepository: CarRepository {
+actor AppCarRepository: CarRepository {
     private let datasource: CarDatasource
     
-    init(datasource: CarDatasource) {
+    init(datasource: CarDatasource = MockCarDatasource()) {
         self.datasource = datasource
     }
     

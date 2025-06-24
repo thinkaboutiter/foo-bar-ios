@@ -6,7 +6,7 @@
 //
 import Foundation
 
-protocol CarDatasource {
+protocol CarDatasource: Sendable {
     func fetchCars() async throws -> [CarNetwork]
 }
 

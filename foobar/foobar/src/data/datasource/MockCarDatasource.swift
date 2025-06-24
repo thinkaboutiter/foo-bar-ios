@@ -6,18 +6,18 @@
 //
 import Foundation
 
-class MockCarDatasource: CarDatasource {
+actor MockCarDatasource: CarDatasource {
     func fetchCars() async throws -> [CarNetwork] {
         // Simulate a network delay
         try await Task.sleep(nanoseconds: 1_000_000_000) // 1 second
 
         // get local json file
         guard let url = Bundle.main.url(forResource: "mockdata", withExtension: "json") else {
-            throw MockCarDatasource.Error.fileNotFound
+            throw AppError.datasource(.fileNotFound)
         }
         // read data from file
         guard let data = try? Data(contentsOf: url) else {
-            throw MockCarDatasource.Error.invalidData
+            throw AppError.datasource(.invalidData)
         }
         // decode json data
         let decoder = JSONDecoder()
@@ -27,18 +27,3 @@ class MockCarDatasource: CarDatasource {
     }
 }
 
-extension MockCarDatasource {
-    enum Error: Swift.Error, CustomStringConvertible {
-        case fileNotFound
-        case invalidData
-
-        var description: String {
-            switch self {
-            case .fileNotFound:
-                return "Mock data file not found"
-            case .invalidData:
-                return "Invalid data format"
-            }
-        }
-    }
-}
