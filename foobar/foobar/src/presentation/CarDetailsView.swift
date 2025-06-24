@@ -23,3 +23,16 @@ struct CarDetailsView: View {
         .navigationTitle("Car Details")
     }
 }
+
+#Preview {
+    CarDetailsView(
+        car: CarApp(
+            from: CarNetwork(
+                title: "Tesla Model S",
+                aboutUrlString: "https://www.tesla.com/models",
+                details: "The Tesla Model S is an all-electric five-door liftback sedan produced by Tesla, Inc.",
+                imageUrlString: "https://example.com/tesla_model_s.jpg"
+            )
+        )
+    )
+}

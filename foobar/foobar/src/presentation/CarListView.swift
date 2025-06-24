@@ -13,9 +13,12 @@ struct CarListView: View {
         NavigationView {
             List(viewModel.cars) { car in
                 NavigationLink(destination: CarDetailsView(car: car)) {
-                    Text(car.title)
+                    CarRowView(car: car)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 0)
                 }
             }
+            .listStyle(.plain)
             .navigationTitle("Cars")
             .task {
                 await viewModel.fetchCars()
@@ -43,4 +46,9 @@ extension CarListView {
             }
         }
     }
+}
+
+#Preview {
+    CarListView()
+        .environment(\.colorScheme, .light)
 }
